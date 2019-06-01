@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-8&@z!-a-9r91p%6#ei)diu!p@9-2ofv*5=b_51r+7t-79+qen'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['http://gateapi.vishalpandey.xyz/', 'https://gateapi.vishalpandey.xyz/', 'gateapi.vishalpandey.xyz']
 
