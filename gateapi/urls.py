@@ -46,3 +46,10 @@ urlpatterns = [
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('', include('visitor.urls')),
 ]
+
+
+
+
+admin.site.site_header = 'GBU GateAPI'
+admin.site.site_title = 'GBU GateAPI Admin'
+admin.site.index_title = 'GBU GateAPI Admin'
