@@ -17,3 +17,6 @@ class VisitorList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     queryset = Visitor.objects.all()
     serializer_class = VisitorSerializer
+
+def index(request):
+	return render(request, 'index.html');
