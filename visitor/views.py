@@ -18,5 +18,11 @@ class VisitorList(generics.ListCreateAPIView):
     queryset = Visitor.objects.all()
     serializer_class = VisitorSerializer
 
+class VisitorDetails(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Visitor.objects.all()
+    serializer_class = VisitorSerializer
+
+
 def index(request):
 	return render(request, 'index.html');
