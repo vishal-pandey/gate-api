@@ -7,4 +7,4 @@ from oauth2_provider.models import AbstractAccessToken
 class VisitorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Visitor
-        fields = ("visit_date","card_number","name","address","mobile","number_plate","destination","purpose","intime","outtime")
+        fields = ("id","visit_date","card_number","name","address","mobile","number_plate","destination","purpose","intime","outtime")
