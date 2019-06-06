@@ -12,7 +12,7 @@ class Visitor(models.Model):
 	number_plate = models.TextField()
 	destination = models.TextField()
 	purpose = models.TextField()
-	intime = models.DateTimeField(auto_now_add=True)
+	intime = models.DateTimeField(auto_now_add=False)
 	outtime = models.DateTimeField(auto_now_add=False)
 
 
