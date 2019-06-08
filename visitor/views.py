@@ -23,6 +23,30 @@ class VisitorDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = Visitor.objects.all()
     serializer_class = VisitorSerializer
 
+class VisitorByNumberPlate(APIView):
+	permission_classes = [permissions.IsAuthenticated]
+	def get(self, request, format=None):
+		return Response(request.data)
+
+	def post(self, request, format=None):
+
+		if request.data['all']=='1':
+			queryset = Visitor.objects.filter(Q(number_plate__iexact=request.data['number_plate'])).values_list('id','visit_date','card_number','name','address','mobile','number_plate','destination','purpose','intime','outtime').distinct()[:]
+		else:
+			queryset = Visitor.objects.filter(Q(number_plate__iexact=request.data['number_plate'])).values_list('id','visit_date','card_number','name','address','mobile','number_plate','destination','purpose','intime','outtime').distinct()[:1]
+
+		return Response(queryset)
+
+class VisitorByVisitDate(APIView):
+	permission_classes = [permissions.IsAuthenticated]
+	def get(self, request, format=None):
+		return Response(request.data)
+
+	def post(self, request, format=None):
+		queryset = Visitor.objects.filter(Q(visit_date__iexact=request.data['visit_date'])).values_list('id','visit_date','card_number','name','address','mobile','number_plate','destination','purpose','intime','outtime').distinct()[:]
+		return Response(queryset)	
+
+
 
 def index(request):
 	return render(request, 'index.html');
