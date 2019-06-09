@@ -7,7 +7,7 @@ urlpatterns = [
     path('visitor-detail/<pk>/', views.VisitorDetails.as_view()),
     path('visitor-by-number-plate/', views.VisitorByNumberPlate.as_view()),
     path('visitor-by-visit-date/', views.VisitorByVisitDate.as_view()),
-
+    path('current', views.get_user),
 
     path('', views.index, name='index'),
 ]

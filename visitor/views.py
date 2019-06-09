@@ -10,6 +10,11 @@ from rest_framework.response import Response
 from django.db.models import Q
 from itertools import chain
 import collections
+import json
+
+from django.http import HttpResponse
+
+from oauth2_provider.decorators import protected_resource
 # Create your views here.
 
 
@@ -45,6 +50,23 @@ class VisitorByVisitDate(APIView):
 	def post(self, request, format=None):
 		queryset = Visitor.objects.filter(Q(visit_date__iexact=request.data['visit_date'])).values_list('id','visit_date','card_number','name','address','mobile','number_plate','destination','purpose','intime','outtime').distinct()[:]
 		return Response(queryset)	
+
+
+@protected_resource()
+def get_user(request, *args, **kwargs):
+    token_value = request.GET['access_token']
+    token = get_access_token_model().objects.get(token=token_value)
+    user = token.user
+    return HttpResponse(
+        json.dumps({
+            'id': user.id,
+            'username': user.username, 
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'email': user.email}),
+        content_type='application/json')
+
+
 
 
 
